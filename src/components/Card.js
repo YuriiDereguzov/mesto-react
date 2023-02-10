@@ -2,7 +2,6 @@ import React from "react";
 
 function Card(props) {
   function handleCardClick() {
-    // console.log('Click')
     props.onCardClick(props.card);
   }
 

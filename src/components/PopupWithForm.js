@@ -6,25 +6,12 @@ import React from "react";
 // «Вы уверены?»
 
 function PopupWithForm(props) {
-  // const popupElement = document.querySelector(`.popup_${props.name}`);
-  // function hendleClosePopup() {
-  //   popupElement?.classList.remove("popup_opened");
-  // }
-  // function hendleOpenPopup() {
-  //   popupElement.classList.add("popup_opened");
-  // }
-  // React.useEffect(() => {
-  //   // console.log(props);
-  //   if (props.isOpen) {
-  //     hendleOpenPopup();
-  //   }
-  //   if (!props.isOpen) {
-  //     hendleClosePopup();
-  //   }
-  // }, [props.isOpen]);
-
   return (
-    <section className={`popup popup_${props.name} ${props.isOpen ? "popup_opened" : ""}`}>
+    <section
+      className={`popup popup_${props.name} ${
+        props.isOpen ? "popup_opened" : ""
+      }`}
+    >
       <div className="popup__container">
         <form name={`${props.name}`} className="popup__form" /*novalidate*/>
           <h2 className="popup__title">{props.title}</h2>
