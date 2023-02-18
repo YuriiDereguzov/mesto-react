@@ -4,12 +4,25 @@ import Header from "./Header";
 import ImagePopup from "./ImagePopup";
 import Main from "./Main";
 import PopupWithForm from "./PopupWithForm";
+import { api } from "../utils.js/Api";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({ name: "", link: "" });
+  const [currentUser, setCurrentUser] = React.useState("");
+
+  React.useEffect(() => {
+    api.getProfile()
+      .then((userData) => {
+        setCurrentUser(userData);
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
+      });
+  }, []);
 
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
@@ -33,12 +46,15 @@ function App() {
   return (
     <div className="page">
       <Header />
-      <Main
-        onEditProfile={handleEditProfileClick}
-        onAddPlace={handleAddPlaceClick}
-        onEditAvatar={handleEditAvatarClick}
-        onCardClick={setSelectedCard}
-      />
+      <CurrentUserContext.Provider value={currentUser}>
+        {/* Поддерево, в котором будет доступен контекст */}
+        <Main
+          onEditProfile={handleEditProfileClick}
+          onAddPlace={handleAddPlaceClick}
+          onEditAvatar={handleEditAvatarClick}
+          onCardClick={setSelectedCard}
+        />
+      </CurrentUserContext.Provider>
       <Footer />
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       <PopupWithForm
