@@ -21,7 +21,7 @@ function PopupWithForm(props) {
             className="button popup__button-save"
             aria-label="Сохранить"
           >
-            Сохранить
+            {props.buttonText}
           </button>
         </form>
         <button

@@ -15,7 +15,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setSelectedCard(!selectedCard);
+    setSelectedCard({ name: "", link: "" });
   }
 
   function handleEditAvatarClick() {
@@ -44,6 +44,7 @@ function App() {
       <PopupWithForm
         name="edit-profile"
         title="Редактировать профиль"
+        buttonText="Сохранить"
         onClose={closeAllPopups}
         isOpen={isEditProfilePopupOpen}
         children={
@@ -76,6 +77,7 @@ function App() {
       <PopupWithForm
         name="add_card"
         title="Новое место"
+        buttonText="Создать"
         onClose={closeAllPopups}
         isOpen={isAddPlacePopupOpen}
         children={
@@ -106,6 +108,7 @@ function App() {
       <PopupWithForm
         name="edit_avatar"
         title="Обновить аватар"
+        buttonText="Сохранить"
         onClose={closeAllPopups}
         isOpen={isEditAvatarPopupOpen}
         children={
