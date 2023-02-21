@@ -6,6 +6,7 @@ import Main from "./Main";
 import PopupWithForm from "./PopupWithForm";
 import { api } from "../utils.js/Api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import EditProfilePopup from "./EditProfilePopup";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -71,7 +72,15 @@ function App() {
       .then(() => {
         setCards(cards => cards.filter((c) => c._id !== card._id));
     });
-  } 
+  }
+
+  function handleUpdateUser(userData) {
+    api.editProfile(userData.name, userData.about)
+      .then((userData) => {
+        setCurrentUser(userData);
+        closeAllPopups()
+      });
+  }
 
   return (
     <div className="page">
@@ -87,10 +96,12 @@ function App() {
           onCardLike={handleCardLike}
           onCardDelete={handleCardDelete}
         />
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} /> 
       </CurrentUserContext.Provider>
       <Footer />
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-      <PopupWithForm
+      {/* <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />  */}
+      {/* <PopupWithForm
         name="edit-profile"
         title="Редактировать профиль"
         buttonText="Сохранить"
@@ -122,7 +133,7 @@ function App() {
             <span className="job-error popup__input-error"></span>
           </>
         }
-      />
+      /> */}
       <PopupWithForm
         name="add_card"
         title="Новое место"

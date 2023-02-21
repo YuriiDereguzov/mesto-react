@@ -13,7 +13,7 @@ function PopupWithForm(props) {
       }`}
     >
       <div className="popup__container">
-        <form name={`${props.name}`} className="popup__form" /*novalidate*/>
+        <form onSubmit={props.onSubmit} name={`${props.name}`} className="popup__form" /*novalidate*/>
           <h2 className="popup__title">{props.title}</h2>
           {props.children}
           <button
