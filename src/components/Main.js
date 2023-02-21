@@ -1,23 +1,22 @@
 import React from "react";
-import { api } from "../utils.js/Api";
+// import { api } from "../utils.js/Api";
 import Card from "./Card";
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
+function Main({ cards, onEditProfile, onEditAvatar, onAddPlace, onCardClick, onCardLike, onCardDelete }) {
   // Подписываемся на контекст CurrentUserContext
   const currentUser = React.useContext(CurrentUserContext);
 
-  const [cards, setCards] = React.useState([]);
-
-  React.useEffect(() => {
-    api.getInitialCards()
-      .then((cardList) => {
-        setCards(cardList);
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
-      });
-  }, []);
+  // const [cards, setCards] = React.useState([]);
+  // React.useEffect(() => {
+  //   api.getInitialCards()
+  //     .then((cardList) => {
+  //       setCards(cardList);
+  //     })
+  //     .catch((err) => {
+  //       console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
+  //     });
+  // }, []);
   // const [userName, setUserName] = React.useState("");
   // const [userDescription, setUserDescription] = React.useState("");
   // const [userAvatar, setUserAvatar] = React.useState("");
@@ -69,7 +68,7 @@ function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
 
       <section className="cards">
         {cards.map((card) => (
-          <Card key={card._id} card={card} onCardClick={onCardClick} />
+          <Card key={card._id} card={card} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete} />
         ))}
       </section>
     </main>

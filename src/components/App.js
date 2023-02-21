@@ -13,16 +13,27 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({ name: "", link: "" });
   const [currentUser, setCurrentUser] = React.useState("");
+  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
-    api.getProfile()
-      .then((userData) => {
+    Promise.all([api.getProfile(), api.getInitialCards()])
+      .then(([userData, cardList]) => {
         setCurrentUser(userData);
+        setCards(cardList);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
       });
   }, []);
+  // React.useEffect(() => {
+  //   api.getProfile()
+  //     .then((userData) => {
+  //       setCurrentUser(userData);
+  //     })
+  //     .catch((err) => {
+  //       console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
+  //     });
+  // }, []);
 
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
@@ -43,16 +54,38 @@ function App() {
     setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
   }
 
+  function handleCardLike(card) {
+    // Снова проверяем, есть ли уже лайк на этой карточке
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    api.toggleLike(card._id, isLiked)
+      .then((newCard) => {
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    });
+  }
+
+  function handleCardDelete(card) {    
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    api.deleteCard(card._id)
+      .then(() => {
+        setCards(cards => cards.filter((c) => c._id !== card._id));
+    });
+  } 
+
   return (
     <div className="page">
       <Header />
       <CurrentUserContext.Provider value={currentUser}>
         {/* Поддерево, в котором будет доступен контекст */}
         <Main
+          cards={cards}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
           onCardClick={setSelectedCard}
+          onCardLike={handleCardLike}
+          onCardDelete={handleCardDelete}
         />
       </CurrentUserContext.Provider>
       <Footer />
