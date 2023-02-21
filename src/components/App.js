@@ -7,6 +7,7 @@ import PopupWithForm from "./PopupWithForm";
 import { api } from "../utils.js/Api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -81,6 +82,13 @@ function App() {
         closeAllPopups()
       });
   }
+  function handleUpdateAvatar(userData) {
+    api.editAvatar(userData.avatar)
+      .then((userData) => {
+        setCurrentUser(userData);
+        closeAllPopups()
+      });
+  }
 
   return (
     <div className="page">
@@ -96,10 +104,12 @@ function App() {
           onCardLike={handleCardLike}
           onCardDelete={handleCardDelete}
         />
-        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} /> 
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen}  onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
       </CurrentUserContext.Provider>
       <Footer />
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+      {/* <EditAvatarPopup isOpen={isEditAvatarPopupOpen}  onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} /> */}
       {/* <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />  */}
       {/* <PopupWithForm
         name="edit-profile"
@@ -165,7 +175,7 @@ function App() {
           </>
         }
       />
-      <PopupWithForm
+      {/* <PopupWithForm
         name="edit_avatar"
         title="Обновить аватар"
         buttonText="Сохранить"
@@ -184,7 +194,7 @@ function App() {
             <span className="linkAvatar-error popup__input-error"></span>
           </>
         }
-      />
+      /> */}
       {/* <PopupWithForm name="delete_card" title="Вы уверены?" isOpen={is} /> */}
 
       {/* <section className="popup popup_delete_card">

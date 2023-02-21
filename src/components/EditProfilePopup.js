@@ -6,19 +6,18 @@ function EditProfilePopup(props) {
   // Стейты, в которых содержится значение инпутов
   const [name, setName] = React.useState("");
   const [description, setDescription] = React.useState("");
-
   // Подписка на контекст
   const currentUser = React.useContext(CurrentUserContext);
-
   // После загрузки текущего пользователя из API
   // его данные будут использованы в управляемых компонентах.
   React.useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
+    // setName(currentUser.name === undefined ? "" : currentUser.name);
+    // setDescription(currentUser.about === undefined ? "" : currentUser.about);
   }, [currentUser]);
 
   function handleSubmit(e) {
-    // Запрещаем браузеру переходить по адресу формы
     e.preventDefault();
   
     // Передаём значения управляемых компонентов во внешний обработчик
@@ -44,14 +43,12 @@ function EditProfilePopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}
-      //   onClose={closeAllPopups}
-      //   isOpen={isEditProfilePopupOpen}
       children={
         <>
           {/* Значение элемента «привязывается» к значению стейта */}
           <input
             type="text"
-            // value={name}
+            value={name || ''}
             onChange={handleChangeName}
             id="name-user"
             name="name"
@@ -64,7 +61,7 @@ function EditProfilePopup(props) {
           <span className="name-user-error popup__input-error"></span>
           <input
             type="text"
-            // value={description}
+            value={description || ''}
             onChange={handleChangeDescription}
             id="job"
             name="job"
