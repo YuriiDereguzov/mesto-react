@@ -54,6 +54,16 @@ class Api {
     }).then(this._getResponseData);
   }
 
+  editAvatar(avatar) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar,
+      }),
+    }).then(this._getResponseData);
+  }
+
   toggleLike(id, isLiked) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: isLiked ? "DELETE" : "PUT",
@@ -74,16 +84,6 @@ class Api {
   //     })
   //     .then(this._getResponseData)
   // }
-
-  editAvatar(avatar) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify({
-        avatar,
-      }),
-    }).then(this._getResponseData);
-  }
 }
 
 export const api = new Api({

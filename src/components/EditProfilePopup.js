@@ -19,13 +19,13 @@ function EditProfilePopup(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-  
+
     // Передаём значения управляемых компонентов во внешний обработчик
     props.onUpdateUser({
       name,
       about: description,
     });
-  } 
+  }
 
   // Обработчики изменения инпутов обновляют стейты
   function handleChangeName(e) {
@@ -48,7 +48,7 @@ function EditProfilePopup(props) {
           {/* Значение элемента «привязывается» к значению стейта */}
           <input
             type="text"
-            value={name || ''}
+            value={name || ""}
             onChange={handleChangeName}
             id="name-user"
             name="name"
@@ -61,7 +61,7 @@ function EditProfilePopup(props) {
           <span className="name-user-error popup__input-error"></span>
           <input
             type="text"
-            value={description || ''}
+            value={description || ""}
             onChange={handleChangeDescription}
             id="job"
             name="job"
