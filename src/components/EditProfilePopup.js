@@ -13,8 +13,6 @@ function EditProfilePopup(props) {
   React.useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
-    // setName(currentUser.name === undefined ? "" : currentUser.name);
-    // setDescription(currentUser.about === undefined ? "" : currentUser.about);
   }, [currentUser]);
 
   function handleSubmit(e) {
@@ -53,8 +51,6 @@ function EditProfilePopup(props) {
             id="name-user"
             name="name"
             className="popup__input popup__input_type_name"
-            // minlength="2"
-            // maxlength="40"
             required
             placeholder="Имя"
           />
@@ -66,8 +62,6 @@ function EditProfilePopup(props) {
             id="job"
             name="job"
             className="popup__input popup__input_type_job"
-            // minlength="2"
-            // maxlength="200"
             required
             placeholder="Вид деятельности"
           />

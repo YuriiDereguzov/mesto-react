@@ -41,7 +41,6 @@ function Main({ cards, onEditProfile, onEditAvatar, onAddPlace, onCardClick, onC
             className="profile__avatar"
             src={currentUser.avatar}
             alt="Аватар"
-            /*style={{ backgroundImage: `url(${userAvatar})` }}*/
           />
           <button
             onClick={onEditAvatar}

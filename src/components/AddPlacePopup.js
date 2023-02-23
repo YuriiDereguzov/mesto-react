@@ -39,21 +39,17 @@ function AddPlacePopup(props) {
         <>
           <input
             type="text"
-            // value={name || ''}
             value={name}
             onChange={handleChangeName}
             id="name-card"
             name="name"
             className="popup__input popup__input_card_name"
-            // minlength="2"
-            // maxlength="30"
             required
             placeholder="Название"
           />
           <span className="name-card-error popup__input-error"></span>
           <input
             type="url"
-            // value={link || ''}
             value={link}
             onChange={handleChangeLink}
             id="link"
