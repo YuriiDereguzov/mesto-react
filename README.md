@@ -1,7 +1,42 @@
 # mesto-react
-https://yuriidereguzov.github.io/mesto-react
 
-Место - Россия, очередная проектная работа с изображениями красивых мест страны. В проекте имеется возможность редактированния профиля, смены аватара, просмотра карточек в увеличеном виде, оценивания понравившихся мест. Имеется возможность добавления, а так же и удаления новых карточек - мест России.
+## Продолжение проекта Mesto([Ссылка на GitHub](https://github.com/YuriiDereguzov/mesto "Ссылка на GitHub")) теперь на React.
+
+### Краткое описание:
+
+Сервис Mesto: проектная работа с изображениями красивых мест страны.
+
+Это интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки.
+
+В проекте имеется возможность редактированния профиля и просмотра карточек в увеличеном виде
+
+## Ссылки на проект:
+
+[GitHub] — https://github.com/YuriiDereguzov/mesto-react
+
+[Deploy] — [Mesto](https://yuriidereguzov.github.io/mesto-react "Ссылка на сайт")
+
+## Технологии, инструменты и стек:
+
+<ul>
+  <li>Flexbox</li>
+  <li>Grid</li>
+  <li>Адаптивная вёрстка</li>
+  <li>БЭМ</li>
+  <li>Javascript
+    <ul>
+      <li>Редактирование элементов</li>
+      <li>Добавление/удаление элементов</li>
+      <li>Валидация</li>
+      <li>Promise</li>
+    </ul>
+  </li>
+  <li>Объектно-ориентированное программирование (ООП)</li>
+  <li>React</li>
+  <li>Webpack</li>
+  <li>API</li>
+</ul>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
