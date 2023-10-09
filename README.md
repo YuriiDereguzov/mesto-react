@@ -1,6 +1,6 @@
 # mesto-react
 
-## Продолжение проекта Mesto([Ссылка на GitHub](https://github.com/YuriiDereguzov/mesto "Ссылка на GitHub")) теперь на React.
+## Продолжение проекта [Mesto](https://github.com/YuriiDereguzov/mesto "Ссылка на GitHub") теперь на React.
 
 ### Краткое описание:
 
@@ -14,7 +14,7 @@
 
 [GitHub] — https://github.com/YuriiDereguzov/mesto-react
 
-[Deploy] — [Mesto](https://yuriidereguzov.github.io/mesto-react "Ссылка на сайт")
+[Deploy] — [Mesto-react](https://yuriidereguzov.github.io/mesto-react "Ссылка на сайт")
 
 ## Технологии, инструменты и стек:
 
